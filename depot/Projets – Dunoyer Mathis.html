@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Projets – Dunoyer Mathis</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--fg:#fff;--mut:#9b9b9b;--line:#2b2b2b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Montserrat',system-ui,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,8vw,128px)}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px 32px;padding-top:28px}
+.brand{font-weight:800;font-size:2rem;letter-spacing:-.01em}
+nav{display:flex;gap:clamp(16px,3vw,48px);font-weight:500}
+nav a{padding-bottom:2px;border-bottom:2px solid transparent}
+nav a.on{border-color:var(--fg)}
+.hero{padding:72px 0 40px}
+h1{font-weight:300;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.1;margin:0 0 20px}
+.hero p{font-size:1.2rem;margin:0;max-width:40ch}
+.bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:32px;font-weight:500}
+.filters{display:flex;gap:28px;flex-wrap:wrap}
+.bar button{background:none;border:0;border-bottom:2px solid transparent;color:var(--mut);font:inherit;padding:0 0 2px;cursor:pointer}
+.bar button:hover{color:var(--fg)}
+.bar button.on{color:var(--fg);border-color:var(--fg)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{border:1px solid var(--line);padding:2px 10px;font-size:.75rem;color:var(--mut)}
+.meta{font-size:.85rem;color:var(--mut)}
+.btn{display:inline-block;background:var(--fg);color:var(--bg);padding:14px 40px;font-weight:500;font-size:.95rem}
+.lk{font-weight:500;margin-top:auto;padding-top:8px}
+h3{margin:0;font-weight:500;font-size:1.3rem;line-height:1.3}
+h3.big{font-weight:300;font-size:clamp(1.8rem,3.4vw,2.8rem);line-height:1.15}
+p.d{margin:0;color:#cfcfcf;font-size:.95rem}
+.col{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+
+/* zone 3D */
+.stage{position:relative;border:1px solid var(--line);background:radial-gradient(#2c2c2c 1px,transparent 1px) 0 0/20px 20px}
+.stage canvas{display:block;width:100%;height:auto;cursor:grab;touch-action:pan-y}
+.stage canvas:active{cursor:grabbing}
+.hint{position:absolute;left:14px;bottom:10px;font-size:.72rem;color:var(--mut);pointer-events:none}
+
+/* A : index */
+.idx{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,5vw,72px);align-items:start}
+.nm{display:flex;justify-content:space-between;align-items:baseline;gap:16px;width:100%;background:none;border:0;border-top:1px solid var(--line);color:var(--mut);padding:20px 0;text-align:left;cursor:pointer;font-weight:300;font-size:clamp(1.3rem,2.6vw,2.1rem);line-height:1.25;transition:color .2s,padding .2s}
+.nm:last-child{border-bottom:1px solid var(--line)}
+.nm.on{color:var(--fg);padding-left:16px}
+.nm:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.panel{position:sticky;top:24px;border:1px solid var(--line);padding:24px;display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.panel .stage{width:100%;margin-bottom:8px}
+
+/* B : bandes */
+.band{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px);align-items:center;padding:40px 0;border-top:1px solid var(--line)}
+.band:nth-child(even) .stage{order:2}
+.rows .r{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) auto;gap:12px 32px;align-items:center;padding:22px 0;border-top:1px solid var(--line)}
+.rows .r:last-child{border-bottom:1px solid var(--line)}
+.sub{margin:48px 0 8px;font-weight:500}
+
+/* C : bento */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;grid-auto-flow:dense}
+.bc{grid-column:span 3;border:1px solid var(--line);display:flex;flex-direction:column;transition:border-color .2s}
+.bc.big{grid-column:span 6}
+.bc:hover{border-color:var(--fg)}
+.bc .stage{border:0;border-bottom:1px solid var(--line)}
+.bc .in{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:180px}
+
+main{padding-bottom:120px}
+footer{border-top:1px solid var(--line);padding:24px 0 96px;color:var(--mut);font-size:.85rem}
+.ver{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;background:var(--fg);color:var(--bg);z-index:5;box-shadow:0 0 0 1px var(--line);white-space:nowrap}
+.ver span{padding:10px 14px;font-size:.8rem;font-weight:500;border-right:1px solid #ccc}
+.ver button{background:none;border:0;padding:10px 16px;font-size:.85rem;font-weight:500;color:var(--bg);cursor:pointer}
+.ver button.on{background:var(--bg);color:var(--fg)}
+@media(max-width:860px){.idx,.band{grid-template-columns:1fr}.panel{position:static}.band .stage{order:0!important}.rows .r{grid-template-columns:1fr}.bc,.bc.big{grid-column:span 12}.ver span{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="#">Dunoyer Mathis</a>
+  <nav><a href="#">Home</a><a class="on" href="#">Projets</a><a href="#">Experience</a><a href="#">Blog</a><a href="#">Contact</a></nav>
+</header>
+<section class="hero">
+  <h1>Mes projets</h1>
+  <p>Des outils écrits à la main, sans dépendances inutiles.</p>
+</section>
+<main>
+  <div class="bar"><div class="filters" id="filters"></div><button id="az">A–Z</button></div>
+  <div id="out"></div>
+</main>
+<footer>© 2026 Dunoyer Mathis · Annecy</footer>
+</div>
+<div class="ver" role="group" aria-label="Disposition">
+  <span>Disposition</span>
+  <button data-v="A" class="on">A Index</button><button data-v="B">B Bandes</button><button data-v="C">C Bento</button>
+</div>
+<script>
+const P=[
+{t:"webartifact",d:"Automatisation et contrôle des navigateurs en Python : les requêtes HTTP sont envoyées directement aux WebDriver, sans Selenium ni bibliothèque externe.",tags:["Python","WebDriver","HTTP","Zéro dépendance"],c:"Automatisation",s:"web"},
+{t:"Arch Linux sur mesure",d:"Distribution Arch Linux entièrement maîtrisée pour un espace de travail adapté : aucune bibliothèque inutile, et des applications et scripts développés pour résoudre les problèmes et combler les manques.",tags:["Arch Linux","Bash","Scripts","Minimalisme"],c:"Système",s:"arch"},
+{t:"Portfolio",d:"Mon portfolio actuel : accueil, projets, expérience, blog et contact, dans un style sobre en noir et blanc.",tags:["HTML","CSS","JavaScript"],c:"Web",s:"port"},
+{t:"Lorem ipsum dolor",d:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",tags:["Lorem","Ipsum"],c:"Lorem"},
+{t:"Consectetur adipiscing",d:"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",tags:["Dolor","Amet"],c:"Lorem"},
+{t:"Sed do eiusmod",d:"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",tags:["Tempor","Labore"],c:"Ipsum"},
+{t:"Excepteur sint occaecat",d:"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",tags:["Magna","Aliqua"],c:"Ipsum"}
+];
+
+/* Formes 3D en fil de fer */
+const box=(x,y,z,w,h,d)=>({V:[...Array(8)].map((_,i)=>[x+(i&1?w:-w)/2,y+(i&2?h:-h)/2,z+(i&4?d:-d)/2]),E:[[0,1],[2,3],[4,5],[6,7],[0,2],[1,3],[4,6],[5,7],[0,4],[1,5],[2,6],[3,7]]});
+const pyr=(s,b,h)=>({V:[[-s,b,-s],[s,b,-s],[s,b,s],[-s,b,s],[0,b-h,0]],E:[[0,1],[1,2],[2,3],[3,0],[0,4],[1,4],[2,4],[3,4]]});
+const ln=(a,b)=>({V:[a,b],E:[[0,1]]});
+const M=(...a)=>{const V=[],E=[];a.forEach(o=>{const n=V.length;V.push(...o.V);o.E.forEach(e=>E.push([e[0]+n,e[1]+n]))});return{V,E}};
+const SH={
+  web:M(box(.7,0,0,2.4,1.7,.14),ln([-.5,-.5,.07],[1.9,-.5,.07]),box(-1.7,0,0,.8,.8,.8),ln([-1.3,-.2,0],[-.5,-.2,0]),ln([-1.3,.2,0],[-.5,.2,0])),
+  arch:M(pyr(1.6,1,2.6),pyr(.8,1,1.3),box(0,1.1,0,3.6,.1,3.6)),
+  port:M(box(-.3,-.9,0,2.6,.1,1.8),box(0,0,0,2.6,.1,1.8),box(.3,.9,0,2.6,.1,1.8))
+};
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function draw(c,S,st){
+  const g=c.getContext('2d'),W=c.width,H=c.height,cx=Math.cos(st.rx),sx=Math.sin(st.rx),cy=Math.cos(st.ry),sy=Math.sin(st.ry),K=H*.17;
+  g.clearRect(0,0,W,H);
+  const q=S.V.map(([x,y,z])=>{const X=x*cy+z*sy,Z0=-x*sy+z*cy,Y=y*cx-Z0*sx,Z=y*sx+Z0*cx,k=6/(6+Z);return[W/2+X*K*k,H/2+Y*K*k,Z]});
+  g.lineWidth=1.6;
+  S.E.forEach(([a,b])=>{const d=(q[a][2]+q[b][2])/2,al=Math.max(.15,Math.min(.95,.6-d*.14));g.strokeStyle=`rgba(255,255,255,${al})`;g.beginPath();g.moveTo(q[a][0],q[a][1]);g.lineTo(q[b][0],q[b][1]);g.stroke()});
+  g.fillStyle='#fff';q.forEach(p=>g.fillRect(p[0]-2.5,p[1]-2.5,5,5));
+}
+function frame(){
+  document.querySelectorAll('canvas[data-s]').forEach(c=>{
+    const st=c._st||(c._st={rx:-.4,ry:.7,d:0});
+    if(!c._b){c._b=1;
+      c.onpointerdown=e=>{st.d=1;st.x=e.clientX;st.y=e.clientY;c.setPointerCapture(e.pointerId)};
+      c.onpointermove=e=>{if(!st.d)return;st.ry+=(e.clientX-st.x)*.01;st.rx=Math.max(-1.4,Math.min(1.4,st.rx+(e.clientY-st.y)*.01));st.x=e.clientX;st.y=e.clientY};
+      c.onpointerup=c.onpointercancel=()=>{st.d=0}}
+    if(!st.d&&!RM)st.ry+=.006;
+    draw(c,SH[c.dataset.s],st)});
+  requestAnimationFrame(frame)}
+
+/* Interface */
+const $=s=>document.querySelector(s);
+let v='A',f='Tous',az=false,sel=0,cur=[];
+const tg=a=>`<div class="tags">${a.map(x=>`<span class="tag">${x}</span>`).join('')}</div>`;
+const stage=s=>`<div class="stage"><canvas data-s="${s}" width="720" height="500" aria-label="Objet 3D du projet, glisser pour le faire tourner"></canvas><span class="hint">Glisse pour faire tourner</span></div>`;
+const pan=p=>`${p.s?stage(p.s):''}<span class="meta">${p.c}</span><h3 class="big">${p.t}</h3><p class="d">${p.d}</p>${tg(p.tags)}<a class="btn" href="#">Voir le projet →</a>`;
+function render(){
+  let L=P.filter(p=>f==='Tous'||p.c===f);
+  if(az)L=[...L].sort((a,b)=>a.t.localeCompare(b.t,'fr'));
+  cur=L;if(sel>=L.length)sel=0;
+  const big=L.filter(p=>p.s),small=L.filter(p=>!p.s);
+  let h='';
+  if(v==='A')h=`<div class="idx"><div>${L.map((p,i)=>`<button class="nm${i===sel?' on':''}" data-i="${i}"><span>${p.t}</span><span class="meta">${p.c}</span></button>`).join('')}</div><aside class="panel" id="pan">${pan(L[sel])}</aside></div>`;
+  if(v==='B')h=big.map(p=>`<section class="band">${stage(p.s)}<div class="col"><span class="meta">${p.c}</span><h3 class="big">${p.t}</h3><p class="d">${p.d}</p>${tg(p.tags)}<a class="btn" href="#">Voir le projet →</a></div></section>`).join('')
+    +(small.length?`${big.length?'<p class="sub">Autres projets</p>':''}<div class="rows">${small.map(p=>`<a class="r" href="#"><h3>${p.t}</h3><p class="d">${p.d}</p>${tg(p.tags)}</a>`).join('')}</div>`:'');
+  if(v==='C')h=`<div class="bento">${L.map(p=>`<article class="bc${p.s?' big':''}">${p.s?stage(p.s):''}<div class="in"><span class="meta">${p.c}</span><h3>${p.t}</h3><p class="d">${p.d}</p>${tg(p.tags)}<a class="lk" href="#">Voir le projet →</a></div></article>`).join('')}</div>`;
+  $('#out').innerHTML=h;
+}
+function pick(e){
+  const b=e.target.closest('.nm');if(!b)return;
+  const i=+b.dataset.i;if(i===sel)return;sel=i;
+  document.querySelectorAll('.nm').forEach(x=>x.classList.toggle('on',x===b));
+  $('#pan').innerHTML=pan(cur[i]);
+}
+['mouseover','focusin','click'].forEach(t=>$('#out').addEventListener(t,pick));
+const cats=['Tous',...new Set(P.map(p=>p.c))];
+$('#filters').innerHTML=cats.map(c=>`<button class="${c===f?'on':''}">${c}</button>`).join('');
+$('#filters').onclick=e=>{const b=e.target.closest('button');if(!b)return;f=b.textContent;sel=0;[...$('#filters').children].forEach(x=>x.classList.toggle('on',x===b));render()};
+$('#az').onclick=e=>{az=!az;sel=0;e.currentTarget.classList.toggle('on',az);render()};
+$('.ver').onclick=e=>{const b=e.target.closest('button');if(!b)return;v=b.dataset.v;document.querySelectorAll('.ver button').forEach(x=>x.classList.toggle('on',x===b));render()};
+render();frame();
+</script>
+</body>
+</html>

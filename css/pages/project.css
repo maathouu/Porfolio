@@ -1,0 +1,239 @@
+@import url('../base/variables.css');
+html, body {
+    height: 100%;
+}
+
+
+
+h1 {
+    font-family: var(--Light-font-family);
+    color: var(--second-color);
+    font-size: clamp(2.25rem, 3.75vw, 9rem);
+}
+h2 {
+    font-size: clamp(1.5rem, 2.5vw, 6rem);
+    font-family: var(--Black-font-family);
+    color: var(--second-color);
+}
+h3 {
+    font-size: 2.5rem;
+    font-family: var(--Thin-font-family);
+}
+
+p {
+    font-size: 0.9rem;
+    font-family: var(--Light-font-family);
+}
+
+main {
+    min-height: calc(130% - var(--Header-Height)) ;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--main-color);
+}
+
+    #Presentation-Container {
+        width: 50%;
+        margin: 4rem 0 0 var(--Body-Margin);
+    }
+
+        #Presentation-Container > h1 {
+            padding-bottom: 1rem;
+        }
+        #Presentation-Container > p {
+            font-size: 1.2rem;
+            font-family: var(--Light-font-family);
+            color: var(--second-color);
+        }
+
+    #Project-Container {
+        width: calc(100%-2*var(--Body-Margin));
+        margin: 3rem var(--Body-Margin) 0 var(--Body-Margin);
+    }
+
+        #Project-Finder {
+            width: 100%;
+            
+            display: flex;
+            padding-bottom: 2rem;
+        }
+
+            #Project-Finder-Group {
+                width: 50%;
+
+                display: flex;
+                gap: 1.75rem;
+            }
+
+            #Project-Finder-ToolBox {
+                width: 50%;
+
+                display: flex;
+                justify-content: end;
+                gap: 1.75rem;
+            }
+
+                #Project-Finder-ToolBox p {
+                    font-family: var(--Medium-font-family);
+                    color: color-mix(in srgb,var(--second-color) 60%, transparent);
+                }
+        
+        #Project-Viewer {
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+            
+            #Project-Viewer > section {
+                width: 50%;
+                
+                margin-bottom: 10rem;
+
+                display: flex;
+                flex-direction: column;
+            }
+
+            @media (max-width: 1250px)
+            {
+                #Project-Viewer > section {
+                    display: none;
+                }
+            }
+
+                .Pro-View-Name {
+                    width: 100%;
+
+                    border : 1px color-mix(in srgb, var(--second-color) 17%, transparent) solid;
+                    border-width: 1px 0 0 0;
+
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 1.25rem 0;
+
+                    cursor: pointer;
+                }
+
+                .Pro-View-Name.hidden {
+                    display: none;
+                }
+
+                .Pro-View-Name.last {
+                    border-width: 1px 0;
+                }
+
+                    .Pro-View-Name > div {
+                        display: flex;
+                    }
+
+                        .Pro-View-Name h3 {
+                            margin-right: 2rem;
+                            
+                            color: color-mix(in srgb,var(--second-color) 60%, transparent);
+                            transition: 0.2s;
+                        }
+
+                        .Pro-View-Name.active h3 {
+                            margin-left: 1rem;
+
+                            color: var(--second-color);
+                        }
+
+                    .Pro-View-Name > p {
+                        margin-top: 1.6rem;
+
+                        color: color-mix(in srgb,var(--second-color) 60%, transparent);
+                    }
+
+            #Project-Viewer .Project-Content {
+                /* position: sticky; */
+                top: 1.5rem;
+
+                margin-bottom: 10rem;
+
+                display: flex;
+                padding: 1.5rem;
+            }
+
+            @media (max-width: 1250px)
+            {
+                #Project-Viewer .Project-Content {
+                    border-top: 1px color-mix(in srgb, var(--second-color) 17%, transparent) solid;
+                    
+                    justify-content: space-between;
+                    gap: 2rem;
+                }
+            }
+
+            @media (min-width: 1251px)
+            {
+
+                #Project-Viewer .Project-Content {
+                    width: calc(50% - 4.5rem);
+
+                    border: 1px color-mix(in srgb, var(--second-color) 17%, transparent) solid;
+                    
+                    flex-direction: column;
+                }
+
+            }
+
+                canvas {
+                    width: 100%;
+                    margin-bottom: 1.5rem;
+
+                    background: radial-gradient(color-mix(in srgb, var(--second-color) 17%, transparent) 1px, transparent 1px) 0 0 / 22px 22px;
+                    border: 1px color-mix(in srgb, var(--second-color) 17%, transparent) solid;
+                }
+
+                    .Project-Text > span {
+                        font-family: var(--Light-font-family); 
+                        font-size: 0.85rem; 
+                        color: color-mix(in srgb, var(--second-color) 60%, transparent);
+                    }
+
+                    .Project-Text h3 {
+                        padding: 1rem 0 1rem 0;
+
+                        font-family: var(--Light-font-family); 
+                        font-size: clamp(1.8rem, 3vw, 3.5rem);
+                        color: var(--second-color);
+                    }
+
+                    .Project-Text p {
+                        font-family: var(--Light-font-family); 
+                        font-size: 1rem; 
+                        line-height: 1.5;
+                        color: var(--second-color); opacity: 0.85;
+                    }
+                    
+                    .Project-Text .Btn_1 {
+                        display: inline-block;
+                    }
+                
+
+
+
+.Project-Tags {
+    padding: 1rem 0;
+
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 0.5rem;
+}
+
+.Project-Tags > span {
+    padding: 0.1rem 0.65rem; 
+    
+    border: 1px solid color-mix(in srgb, var(--second-color) 17%, transparent); 
+    
+    font-family: var(--Medium-font-family); 
+    font-size: 0.75rem; 
+    color: color-mix(in srgb, var(--second-color) 60%, transparent);
+}
+
+
+/* #Project-Viewer .Btn_1 { display: inline-block; } */

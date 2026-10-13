@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "Montserrat-Black";
+    src: url("../../asset/font/Montserrat/Montserrat-Black.ttf");
+}
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url("../../asset/font/Montserrat/Montserrat-Bold.ttf");
+}
+@font-face {
+    font-family: "Montserrat-Light";
+    src: url("../../asset/font/Montserrat/Montserrat-Light.ttf");
+}
+@font-face {
+    font-family: "Montserrat-Thin";
+    src: url("../../asset/font/Montserrat/Montserrat-Thin.ttf");
+}
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("../../asset/font/Montserrat/Montserrat-Medium.ttf");
+}
+
+
+:root {
+    --main-color: #0a0a0a;
+  
+    --second-color: #ffffff;
+
+    /* --second-color_60 : #0a0a0a9A;
+    --second-color_20 : #0a0a0a0C; */
+
+    --third-color: brown;
+  
+
+    --Bold-font-family : Montserrat-Bold,sans-serif;
+    
+    --Black-font-family : Montserrat-Black,sans-serif;
+    --Medium-font-family : Montserrat-Medium,sans-serif;
+    
+    --Light-font-family : Montserrat-Light,sans-serif;
+    --Thin-font-family : Montserrat-Thin,sans-serif;
+
+
+
+
+    --Header-Height : clamp(3rem, 5vw, 12rem);
+    --Footer-Height : clamp(3rem, 5vw, 12rem);
+    --Body-Margin : 8rem;
+}
+
+
+:root {
+
+    --Btn_0-Size: 1;
+    --Header_Menu-Size : 1;
+}
