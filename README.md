@@ -15,9 +15,6 @@ Ces fichiers contiennent les styles globaux et fondamentaux du site.
 - Contient les styles globaux appliqués à tout le site (body, liens, titres, paragraphes, images, etc.).
 - Sert de base pour l’apparence générale et la cohérence visuelle.
 
-#### `layout.css`
-- Définit la structure principale du site : header, footer, navbar, sections principales.
-- Contient les grilles, flexbox, et autres règles de disposition globale.
 
 #### `variables.css`
 - Contient toutes les variables CSS (couleurs, polices, tailles, marges, etc.).

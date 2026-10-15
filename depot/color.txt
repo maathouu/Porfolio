@@ -1,3 +1,0 @@
-cyberpunk:
-    D2042D  : charcoal
-    FAF9F6  : yellow

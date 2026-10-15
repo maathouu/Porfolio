@@ -2,7 +2,8 @@ const rootStyles = getComputedStyle(document.documentElement);
 const MainColor = rootStyles.getPropertyValue('--main-color');
 const SelectedSecondColor = rootStyles.getPropertyValue('--selected-second-color');
 
-function HeaderSelected() {
+function HeaderSelected() 
+{
     let HeaderLinkTag = document.getElementsByClassName("Header-Link");
     let CurrentPath = window.location.pathname;
 
@@ -15,5 +16,4 @@ function HeaderSelected() {
         { HeaderLinkTag[i].style.textDecorationLine = 'underline'; }
     }
 }
-
 HeaderSelected();

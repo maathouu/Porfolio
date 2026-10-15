@@ -5,13 +5,35 @@ const SPHERECONTAINER = document.getElementById("Sphere-Container");
 function InitSphere() {
 
     // =================================== [ FUNCTIONS ] ===================================
-    function fitCameraToContainer() {
-        const ASPECT = SPHERECONTAINER.clientWidth / SPHERECONTAINER.clientHeight;  // Ratio largeur par hauteur
+
+    function updateView() {
+        const BOX = SPHERECONTAINER.getBoundingClientRect();
+        const FULLW = BOX.width;
+        const FULLH = BOX.height;
+        if (FULLW == 0 || FULLH == 0) return;
+
+        // Zone visible = intersection entre la boite et la fenetre (coordonnées relatives à la boite)
+        const VIEWW = document.documentElement.clientWidth;
+        const VIEWH = document.documentElement.clientHeight;
+        const X = Math.min(Math.max(0,-BOX.left),FULLW - 1);
+        const Y = Math.min(Math.max(0,-BOX.top),FULLH - 1);
+        const W = Math.max(1,Math.ceil(Math.min(BOX.right,VIEWW) - Math.max(BOX.left,0)));
+        const H = Math.max(1,Math.ceil(Math.min(BOX.bottom,VIEWH) - Math.max(BOX.top,0)));
+
+        const ASPECT = FULLW / FULLH;  // Ratio largeur par hauteur
         CAMERA.aspect = ASPECT;
         const HEIGHTDISTANCE = (RADIUS * 1.2) / Math.tan(CAMERA.fov * Math.PI / 360);
-
         CAMERA.position.z = Math.max(HEIGHTDISTANCE,HEIGHTDISTANCE / ASPECT); // HEIGHTDISTANCE / ASPECT = widthdistance
+
+        // Le rendu ne couvre que la zone visible
+        CAMERA.setViewOffset(FULLW,FULLH,X,Y,W,H);
         CAMERA.updateProjectionMatrix();
+
+        RENDERER.setSize(W,H);
+        DOTMATERIAL.size = DOT_SIZE * FULLH / H;
+        RENDERER.domElement.style.position = "absolute";
+        RENDERER.domElement.style.left = X + "px";
+        RENDERER.domElement.style.top = Y + "px";
     }
 
     function fibonacciSphere(samples,radius,jitter) {
@@ -70,6 +92,7 @@ function InitSphere() {
     const NUM_POINTS = 220;     // Nombres de points présents sur la sphere
     const RADIUS = 1.7;         // Taille de la sphere
     const JITTER_AMOUNT = 0.4;  // Dispersion des points celon leurs positions d"origine (0 = position d"origine)
+    const DOT_SIZE = 0.08;      // Taille des points
     const POINTS = [];
 
     const MAX_LINK_DIST = 0.75;
@@ -81,14 +104,11 @@ function InitSphere() {
     const SCENE = new THREE.Scene();    // Creation de la scene 3D
     const CAMERA = new THREE.PerspectiveCamera(45,SPHERECONTAINER.clientWidth / SPHERECONTAINER.clientHeight,0.1,1000); // Creation de la vue
     
-    fitCameraToContainer();
     // Camera.position.z = 5;
 
     const RENDERER = new THREE.WebGLRenderer({antialias:true,alpha:true});
 
-    RENDERER.setPixelRatio(window.devicePixelRatio);
-
-    RENDERER.setSize(SPHERECONTAINER.clientWidth,SPHERECONTAINER.clientHeight);
+    RENDERER.setPixelRatio(Math.min(window.devicePixelRatio,2));   // Plafonné à 2 : inutile et couteux au dela sur les écrans HiDPI
 
     SPHERECONTAINER.appendChild(RENDERER.domElement);
 
@@ -102,7 +122,7 @@ function InitSphere() {
     const DOTMATERIAL = new THREE.PointsMaterial(
     {
         color: 0xffffff,
-        size: 0.08,
+        size: DOT_SIZE,
         map: makeGlowTexture(),
         sizeAttenuation: true,
         transparent: true,
@@ -137,15 +157,23 @@ function InitSphere() {
     const LINEGEOMETRY = new THREE.BufferGeometry();
     LINEGEOMETRY.setAttribute("position",new THREE.Float32BufferAttribute(LINEPOSITIONS,3));
 
-    const LINEMATERIAL = new THREE.LineBasicMaterial({color: 0xffffff,transparent: true,opacity: 0.35});
+    const LINEMATERIAL = new THREE.LineBasicMaterial({color: 0xffffff,transparent: true,opacity: 0.55});
     GLOBE.add(new THREE.LineSegments(LINEGEOMETRY,LINEMATERIAL));
 
+    updateView();
     animate();
 
+    // Un seul recalcul par frame pendant un redimensionnement (évite de réallouer le canvas à chaque évènement)
+    let resizePending = false;
     window.addEventListener("resize", () => 
     {
-        fitCameraToContainer();
-        RENDERER.setSize(SPHERECONTAINER.clientWidth, SPHERECONTAINER.clientHeight);
+        if (resizePending) return;
+        resizePending = true;
+        requestAnimationFrame(() => 
+        {
+            resizePending = false;
+            updateView();
+        });
     });
 }
 

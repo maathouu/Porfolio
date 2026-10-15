@@ -1,1 +1,0 @@
-export const DataTemp = fetch("./Projects/Global.json").then(response => response.json());

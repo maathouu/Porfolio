@@ -85,7 +85,5 @@ header {
     color: var(--second-color);
 }
 
-.Icon {
-    max-height:100%; max-width:100%;
-}
+.Icon { max-height:100%; max-width:100%; }
 
