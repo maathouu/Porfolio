@@ -24,11 +24,6 @@
     --main-color: #0a0a0a;
   
     --second-color: #ffffff;
-
-    /* --second-color_60 : #0a0a0a9A;
-    --second-color_20 : #0a0a0a0C; */
-
-    --third-color: brown;
   
 
     --Bold-font-family : Montserrat-Bold,sans-serif;
@@ -40,13 +35,17 @@
     --Thin-font-family : Montserrat-Thin,sans-serif;
 
 
-
-
-    --Header-Height : clamp(3rem, 5vw, 12rem);
     --Footer-Height : clamp(3rem, 5vw, 12rem);
     --Body-Margin : 8rem;
 }
-
+@media (min-width:801px)
+{
+    :root { --Header-Height : clamp(3rem, 5vw, 12rem); }
+}
+@media (max-width : 800px)
+{
+    :root { --Header-Height : 6rem }
+}
 
 :root {
 
