@@ -75,7 +75,7 @@ h4 {
     /* ---------- Texte ---------- */
     #Text-Container {
         position: relative;
-        z-index: 1;                 /* Au-dessus de la sphère */
+        z-index: 1;                     /* Au-dessus de la sphère */
 
         flex: 1;
 
@@ -91,22 +91,107 @@ h4 {
         #Project-Button 
         { margin-top: calc(var(--Space) * 2); }
 
-    /* ---------- Icônes ---------- */
+        #Project-Button .Btn-Common     /* Le bouton est un <a> (navigable au clavier) : il doit garder le comportement de l'ancien <div> */
+        { display: block; }
+
+    /* ---------- Icones ---------- */
     #Icon-Container {
+        position: relative;
+        z-index: 1;                     /* Au-dessus de la sphère, y compris pendant l'animation d'entrée */
+
         display: flex;
         justify-content: center;
         align-items: center;
         gap: var(--Icon-Gap);
 
-        padding: 1rem 0 2.5rem 0;   /* 2.5rem en bas : laisse la place au copyright */
+        padding: 1rem 0 2.5rem 0;       /* 2.5rem en bas : laisse la place au copyright */
     }
 
         #Icon-Container a {
             position: relative;
-            z-index: 1;             /* Au-dessus de la sphère */
 
             height: var(--Icon-Size);
         }
+
+        #Icon-Container .Icon {
+            opacity: 0.6;
+            transition: 0.25s;
+        }
+
+        #Icon-Container a:hover .Icon,          /* Possibilité : copy du mail / hover*/
+        #Icon-Container a:focus-visible .Icon,
+        #Icon-Container a.is-copied .Icon
+        { opacity: 1; }
+
+
+/* ========================================[ STATUS ]======================================== */
+
+.Status::before {
+    display: inline-block;
+    width: 0.4em;
+    height: 0.4em;
+    margin-right: 0.6em;
+    vertical-align: middle;
+
+    content: "";
+    border-radius: 50%;                         /* Transforme le carré en rond */
+    background-color: var(--second-color);
+}
+
+/* ========================================[ TOOLTIP (copie du mail) ]======================================== */
+
+.Tooltip {
+    position: absolute;
+    bottom: calc(100% + 0.75rem);               /* Place le container au dessus du logo*/
+    left: 50%;                                  /* Centre le container  au milieu */
+
+    padding: 0.5rem 0.9rem;                     /* Augmente la taille du container */
+    white-space: nowrap;                        /* Empeche le saut à la ligne du message */
+
+    font-family: var(--Medium-font-family);
+    font-size: 0.8rem;
+    color: var(--second-color);
+    background-color: var(--main-color);
+    border: 1px solid color-mix(in srgb, var(--second-color) 35%, transparent);
+
+    opacity: 0;
+    pointer-events: none;                       /* Empeche la selection du message */
+    transform: translate(-50%, 0.4rem);         /* Affichage du message avec une animation */
+    transition: 0.25s;
+}
+
+.is-copied .Tooltip {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+
+/* ========================================[ ENTREE ]======================================== */
+
+@keyframes Wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes Fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes Led  { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+@media (prefers-reduced-motion: no-preference) {
+
+    #Text-Container h1
+    { animation: Wipe 0.9s cubic-bezier(0.65, 0, 0.35, 1) backwards; }
+
+    #Text-Container h4,
+    #Project-Button,
+    #Icon-Container
+    { animation: Fade 0.8s ease-out backwards; }
+
+    #Text-Container h4 { animation-delay: 0.5s; }
+    #Project-Button    { animation-delay: 0.65s; }
+    #Icon-Container    { animation-delay: 0.8s; }
+
+    #Sphere-Container canvas
+    { animation: Fade 1.8s ease-out 0.2s backwards; }
+
+    .Status::before
+    { animation: Led 2.4s infinite; }
+}
 
 
 /* ========================================[ SPHERE ]======================================== */
