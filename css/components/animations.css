@@ -1,0 +1,15 @@
+.Status::before {
+    display: inline-block;
+    width: 0.4em;
+    height: 0.4em;
+    margin-right: 0.6em;
+    vertical-align: middle;
+
+    content: "";
+    border-radius: 50%;                         /* Transforme le carré en rond */
+    background-color: var(--second-color);
+}
+@media (prefers-reduced-motion: no-preference) {
+    .Status::before
+    { animation: Led 2.4s infinite; }
+}

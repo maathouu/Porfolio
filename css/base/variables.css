@@ -48,7 +48,10 @@
 }
 
 :root {
-
     --Btn_0-Size: 1;
     --Header_Menu-Size : 1;
 }
+
+@keyframes Wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes Fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes Led  { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }

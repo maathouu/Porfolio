@@ -1,10 +1,7 @@
-@import url('../base/variables.css');
-
 /* ========================================[ Common ]======================================== */
 
 .Btn-Common {
     line-height: clamp(calc(var(--Btn_0-Size)*2rem), calc(var(--Btn_0-Size)*3.33vw), calc(var(--Btn_0-Size)*8rem));
-    /* height: 50px; */
     height: clamp(calc(var(--Btn_0-Size)*2rem), calc(var(--Btn_0-Size)*3.33vw), calc(var(--Btn_0-Size)*8rem));
     text-align: center;
     width: clamp(calc(var(--Btn_0-Size)*9rem), calc(var(--Btn_0-Size)*15vw), calc(var(--Btn_0-Size)*36rem));
@@ -80,80 +77,4 @@
     opacity: 0;
   
     transform: scale(0.1, 1);
-}
-
-
-/* ========================================[ Button 2 ]======================================== */
-
-
-.Btn_2 {
-    background-color: var(--main-color);
-    border: none;
-
-    font-family: var(--Medium-font-family);
-    font-size: 1rem;
-    color: color-mix(in srgb,var(--second-color) 60%, transparent);
-    /* color: var(--second-color_60); */
-    text-underline-offset: 5px;
-    text-decoration-thickness: 3px;
-}
-.Btn_2.active {
-    color: var(--second-color);
-    text-decoration: underline;
-}
-.Btn_2:hover {
-    cursor: pointer;
-}
-
-
-/* ========================================[ Header Menu ]======================================== */
-
-
-#Header-Menu {
-	position: relative;
-    width: calc(var(--Header_Menu-Size)*30px);
-	height: calc(var(--Header_Menu-Size)*30px);
-
-	overflow: hidden;
-    z-index: 101;
-}
-
-.Header-Menu-Bar {
-	position: absolute;
-    top: 50%;
-	left: 50%;
-
-    width: calc(var(--Header_Menu-Size)*30px);
-	height: calc(var(--Header_Menu-Size)*4px);
-	
-    background-color: var(--second-color);
-    border-radius: 4px;
-	
-    transform: translate(-50%, -50%);                               
-	transition: 0.3s;
-}
-
-
-.Header-Menu-Bar:nth-of-type(2) {
-	top: calc(50% - calc(var(--Header_Menu-Size)*9px));
-}
-.Header-Menu-Bar:nth-of-type(3) {
-	top: calc(50% + calc(var(--Header_Menu-Size)*9px));
-}
-
-
-#Header-Menu.active .Header-Menu-Bar:nth-of-type(1) {
-    background-color: #ffffff00;
-}
-#Header-Menu.active .Header-Menu-Bar:nth-of-type(2) {
-    top: 50%;
-
-    transform: translate(-50%, 0%) rotate(45deg);  
-    background-color: var(--main-color);
-}
-#Header-Menu.active .Header-Menu-Bar:nth-of-type(3) {
-    top: 50%;
-    
-    transform: translate(-50%, 0%) rotate(-45deg); 
-    background-color: var(--main-color);
 }
