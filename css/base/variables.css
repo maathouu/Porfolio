@@ -34,9 +34,14 @@
     --Light-font-family : Montserrat-Light,sans-serif;
     --Thin-font-family : Montserrat-Thin,sans-serif;
 
+    --Mono-font-family : ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
+    
     --Footer-Height : clamp(3rem, 5vw, 12rem);
     --Body-Margin : 8rem;
+
+    --Btn_0-Size: 1;
+    --Header_Menu-Size : 1;
 }
 @media (min-width:801px)
 {
@@ -45,11 +50,6 @@
 @media (max-width : 800px)
 {
     :root { --Header-Height : 6rem }
-}
-
-:root {
-    --Btn_0-Size: 1;
-    --Header_Menu-Size : 1;
 }
 
 @keyframes Wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }

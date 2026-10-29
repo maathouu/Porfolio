@@ -1,17 +1,23 @@
 @media (prefers-reduced-motion: no-preference) {
 
+    #Background-Grid
+    { animation: Fade 1.8s 0.3s backwards; }
+
+    #Hud
+    { animation: Fade 1.2s 1s backwards; }
+
     #Text-Container h1
     { animation: Wipe 0.9s cubic-bezier(0.65, 0, 0.35, 1) backwards; }
 
     #Text-Container h4,
     #Project-Button,
     #Icon-Container
-    { animation: Fade 0.8s ease-out backwards; }
+    { animation: Fade 0.8s backwards; }
 
     #Text-Container h4 { animation-delay: 0.5s; }
     #Project-Button    { animation-delay: 0.65s; }
     #Icon-Container    { animation-delay: 0.8s; }
 
     #Sphere-Container canvas
-    { animation: Fade 1.8s ease-out 0.2s backwards; }
+    { animation: Fade 1.8s 0.2s backwards; }
 }

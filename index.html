@@ -18,9 +18,10 @@
 
         <!-- <link rel="icon" href="favicon.svg" type="image/x-icon"> -->
 
-        <script src="asset/All.js" defer></script>
+        <script src="./asset/All.js" defer></script>
         <script src="./asset/Index.js" defer></script>
-        <script type="module" src="asset/JS-Files/Sphere.js" defer></script>
+        <script type="module" src="./asset/JS-Files/Sphere.js" defer></script>
+        <script src="./asset/JS-Files/Background.js" defer></script>
 
         <title>Portfolio : Dunoyer Mathis</title>
     </head>
@@ -39,6 +40,18 @@
             </div>
         </header>
         <main>
+            <div id="Background-Grid" aria-hidden="true"></div>
+            
+            <div id="Hud" aria-hidden="true">
+                <div class="Hud-Group">
+                    <span>Annecy, France</span>
+                    <span>45.899° N, 6.129° E</span>
+                </div>
+                <div class="Hud-Group Hud-Right">
+                    <span id="Hud-Clock"></span>
+                    <span id="Hud-Cursor"></span>
+                </div>
+            </div>
 
             <div id="Presentation-Container">
                 <div id="Text-Container">
@@ -66,8 +79,8 @@
                 </div>
             </div>
 
-            <div id="Sphere-Container">
-            </div>
+            <div id="Sphere-Container"></div>
+
             <p id="CopyRight">Copyright : © Mathis Dunoyer</p>
         </main>
     </body>

@@ -9,8 +9,9 @@ body {
     --Icon-Size: clamp(2.25rem, min(6vw, 5vh), 3rem);
     --Icon-Gap:  clamp(1.5rem, 5vw, 3rem);
 
-    --Gutter:           clamp(1.5rem, 5vw, 4rem);           /* marges latérales du texte */
-    --Sphere-Clearance: clamp(0rem, 30vw - 7rem, 20rem);    /* place laissée à la sphère sous le texte */
+    --Gutter:           clamp(1.5rem, 5vw, 4rem);           /* Marges latérales du texte */
+    --Hud-Margin:       var(--Gutter);                      /* Marges latérale du HUD */
+    --Sphere-Clearance: clamp(0rem, 30vw - 7rem, 20rem);    /* Place laissée à la sphère sous le texte */
 
     --Btn_0-Size: 1.5;
 }
@@ -21,13 +22,13 @@ html, body
 { overflow: hidden; }
 
 main {
-    position: relative;     /* Référence pour la sphère et le copyright (positionnés en absolute) */
-    height: calc(100% - var(--Header-Height));
-    min-height: 700px;
+    position: relative;                                     /* Référence pour la sphère et le copyright (positionnés en absolute) */
+    height: calc(100% - var(--Header-Height));              /* Le main prend tout le reste de la page */
+    min-height: 700px;                                      /* Empeche un trop gros retressissment de la page */
 
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: hidden;                                       /* Suprime touts ce que l'utilisateur ne vois pas*/
 
     background-color: var(--main-color);
 }
@@ -36,21 +37,21 @@ main {
 /* ========================================[ TYPO ]======================================== */
 
 h1 {
-    font-size: var(--Title-Size);
+    font-size: var(--Title-Size);                           /* Information principal dans le main */
 
     font-family: var(--Light-font-family);
     color: var(--second-color);
 }
 
-h2 {                                /* Nom dans le header */
-    font-size: clamp(1.5rem, 2.5vw, 6rem);
+h2 {
+    font-size: clamp(1.5rem, 2.5vw, 6rem);                  /* Nom de le Header*/
     
     font-family: var(--Black-font-family);
     color: var(--second-color);
 }
 
 h4 {
-    margin-top: var(--Space);
+    margin-top: var(--Space);                               /* Complement d'information dans le main */
     font-size: var(--Subtitle-Size);
     line-height: 1.4;
 
@@ -62,19 +63,18 @@ h4 {
 /* ========================================[ PRESENTATION ]======================================== */
 
 #Presentation-Container {
-    flex: 1;
-    min-width: 0;
+    flex: 1;                                                /* Prend 50% de la page laterale et 100% en hauteur disponible */
+    /* min-width: 0; */
 
     display: flex;
     flex-direction: column;
 }
 
-    /* ---------- Texte ---------- */
-    #Text-Container {
-        position: relative;
-        z-index: 1;                     /* Au-dessus de la sphère */
+    #Text-Container {                                       /* Titre + Complement + boutton */
+        /* position: relative; */
+        z-index: 1;                                         /* Se place au dessus de la sphere */
 
-        flex: 1;
+        flex: 1;                                            /* Prend 100% de la place disponible en hauteur + largeur */
 
         display: flex;
         flex-direction: column;
@@ -82,30 +82,29 @@ h4 {
         align-items: center;
         text-align: center;
 
-        padding: 0 var(--Gutter) var(--Sphere-Clearance) var(--Gutter);
+        padding: 0 var(--Gutter) var(--Sphere-Clearance) var(--Gutter); /* Se place en haut de l'ecran a la place du centre pour laisser de la place à la sphere*/
     }
 
         #Project-Button 
         { margin-top: calc(var(--Space) * 2); }
 
-        #Project-Button .Btn-Common     /* Le bouton est un <a> (navigable au clavier) : il doit garder le comportement de l'ancien <div> */
-        { display: block; }
+        #Project-Button .Btn-Common                         
+        { display: block; }                                 /*  */
 
-    /* ---------- Icones ---------- */
     #Icon-Container {
-        position: relative;
-        z-index: 1;                     /* Au-dessus de la sphère, y compris pendant l'animation d'entrée */
+        /* position: relative; */                                  
+        z-index: 1;                                         /* Se place au dessus de la sphere */
 
         display: flex;
-        justify-content: center;
+        justify-content: center;                            /* Icones placés au centre (Phone) */
         align-items: center;
-        gap: var(--Icon-Gap);
+        gap: var(--Icon-Gap);                               /* Distance entre chaque element */
 
-        padding: 1rem 0 2.5rem 0;       /* 2.5rem en bas : laisse la place au copyright */
+        padding: 1rem 0 2.5rem 0;                           /* 2.5rem en bas : laisse la place au copyright */
     }
 
         #Icon-Container a {
-            position: relative;
+            /* position: relative; */
 
             height: var(--Icon-Size);
         }
@@ -115,7 +114,7 @@ h4 {
             transition: 0.25s;
         }
 
-        #Icon-Container a:hover .Icon,          /* Possibilité : copy du mail / hover*/
+        #Icon-Container a:hover .Icon,                      /* Possibilité : copy du mail / hover*/
         #Icon-Container a:focus-visible .Icon,
         #Icon-Container a.is-copied .Icon
         { opacity: 1; }
@@ -124,11 +123,11 @@ h4 {
 
 .Tooltip {
     position: absolute;
-    bottom: calc(100% + 0.75rem);               /* Place le container au dessus du logo*/
-    left: 50%;                                  /* Centre le container  au milieu */
+    bottom: calc(100% + 0.75rem);                           /* Place le container au dessus du logo*/
+    left: 50%;                                              /* Centre le container  au milieu */
 
-    padding: 0.5rem 0.9rem;                     /* Augmente la taille du container */
-    white-space: nowrap;                        /* Empeche le saut à la ligne du message */
+    padding: 0.5rem 0.9rem;                                 /* Augmente la taille du container affiche */
+    white-space: nowrap;                                    /* Empeche le saut à la ligne du message */
 
     font-family: var(--Medium-font-family);
     font-size: 0.8rem;
@@ -136,9 +135,9 @@ h4 {
     background-color: var(--main-color);
     border: 1px solid color-mix(in srgb, var(--second-color) 35%, transparent);
 
-    opacity: 0;
-    pointer-events: none;                       /* Empeche la selection du message */
-    transform: translate(-50%, 0.4rem);         /* Affichage du message avec une animation */
+    opacity: 0;                                             /* Invisble tant que l'utlisateur n'a pas interagis */
+    pointer-events: none;                                   /* Empeche la selection du message */
+    transform: translate(-50%, 0.4rem);                     /* Affichage du message avec une animation */
     transition: 0.25s;
 }
 
@@ -150,8 +149,7 @@ h4 {
 /* ========================================[ SPHERE ]======================================== */
 
 #Sphere-Container {
-    /* Layout empilé : conteneur géant ancré en bas de <main>, seul le haut de la sphère dépasse */
-    position: absolute;
+    position: absolute;                                     /* Layout empilé : conteneur géant ancré en bas du main; seul le haut de la sphère dépasse (Phone) */
     left: -100%;
     right: -100%;
     bottom: -140%;
@@ -162,10 +160,10 @@ h4 {
     flex-direction: column;
     justify-content: flex-end;
 
-    overflow: hidden;
+    overflow: hidden;                                       /* Suprime tout ce que le client ne peux pas voir*/
 }
 
-#Sphere-Container::after {          /* Fondu vers la couleur de fond */
+#Sphere-Container::after {                                  /* Fondu en bas de la sphere en format Full*/
     position: absolute;
     left: 0;
     right: 0;
@@ -181,13 +179,13 @@ h4 {
 
 /* ========================================[ COPYRIGHT ]======================================== */
 
-#CopyRight {
-    position: absolute;
+#CopyRight {                                                
+    position: absolute;                                     /* Copyright place en bas de la page */
     left: 0;
     right: 0;
     bottom: 0.75rem;
 
-    text-align: center;
+    text-align: center;                                     /* Au milieu de la page (Phone) */
     font-size: clamp(0.75rem, calc(5vw/6), 2rem);
 
     color: color-mix(in srgb, var(--second-color) 60%, transparent);
@@ -195,8 +193,7 @@ h4 {
 }
 
 
-/* ========================================[ LAYOUT LARGE (2 colonnes) ]======================================== */
-/* Seul endroit où le layout change : tout le reste est hérité du layout empilé. */
+/* ========================================[ LAYOUT FULL ]======================================== */
 
 @media (min-width: 1401px) and (min-aspect-ratio: 16/10) {
 
@@ -204,45 +201,43 @@ h4 {
     { 
         --Title-Size: clamp(2.25rem, 3.75vw, 9rem); 
         --Btn_0-Size: 1;
+        --Hud-Margin: var(--Body-Margin);                               
     }
 
     main 
     { flex-direction: row; }
 
-    /* ---------- Colonne gauche : présentation ---------- */
-    #Presentation-Container 
+    #Presentation-Container                                 /* Colonne de gauche*/
     { margin-left: var(--Body-Margin); }
 
         #Text-Container {
-            text-align: left;
+            text-align: left;                               /* Texte place a gauche */
             
             padding: 10% 0 10% 0;
             justify-content: space-around;
-            align-items: stretch;
+            align-items: stretch;                           /* Les elements autre que texte sont placé à gauches aussi */
         }
 
         #Icon-Container {
             padding: 2rem 0 2rem 0;
-            justify-content: flex-start;
+            justify-content: flex-start;                    /* Icone place a gauche*/
         }
 
-    /* ---------- Colonne droite : sphère ---------- */
-    #Sphere-Container {
+    #Sphere-Container {                                     /* Colonne de droite*/
         position: relative;
         margin-right: var(--Body-Margin);
-        flex: 1;
+        flex: 1;                                            /* Prend 50% de la place laterale et 100% en hauteur disponible */
 
         inset: auto;
         height: auto;
         /* min-width: 0; */
     }
 
-    /* ---------- Copyright ---------- */
     #CopyRight {
         /* left: auto; */
         right: 20px;
         bottom: 20px;
 
-        text-align: right;
+        text-align: right;                                  /* Place a droite */
     }
 }
