@@ -1,6 +1,6 @@
-function MailClipboard() {
+function MailClipboard() 
+{
     const LINK = document.getElementById('MailCopyClipBoard');
-    if (!LINK) return;
 
     const TOOLTIP = LINK.querySelector('.Tooltip');
     const ADDRESS = LINK.getAttribute('href').replace(/^mailto:/, '');  // Source unique : le href du lien
@@ -10,14 +10,15 @@ function MailClipboard() {
     let hideTimer;
     let clearTimer;
 
-    LINK.addEventListener('click', async (e) => {
-        e.preventDefault();
+    async function CopyMail(Event)
+    {
+        Event.preventDefault();
 
-        try {
-            await navigator.clipboard.writeText(ADDRESS);
-        } catch {
-            // Presse-papiers indisponible (contexte non sécurisé, permission refusée) : on ouvre le client mail à la place
-            window.location.href = LINK.href;
+        try 
+        { await navigator.clipboard.writeText(ADDRESS); } 
+        catch 
+        {
+            window.location.href = LINK.href;                           // Presse-papiers indisponible (contexte non sécurisé, permission refusée) : on ouvre le client mail à la place
             return;
         }
 
@@ -27,11 +28,14 @@ function MailClipboard() {
         TOOLTIP.textContent = 'Adresse copiée';
         LINK.classList.add('is-copied');
 
-        hideTimer = setTimeout(() => {
+        hideTimer = setTimeout(() => 
+        {
             LINK.classList.remove('is-copied');
             clearTimer = setTimeout(() => { TOOLTIP.textContent = ''; }, FADE_TIME);   // Vidé pour que le lecteur d'écran ré-annonce au prochain clic
         }, VISIBLE_TIME);
-    });
+    }
+
+    LINK.addEventListener('click',CopyMail);
 }
 
 MailClipboard();

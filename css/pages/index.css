@@ -92,7 +92,7 @@ h4 {
         { display: block; }                                 /*  */
 
     #Icon-Container {
-        /* position: relative; */                                  
+        /* position: relative; */
         z-index: 1;                                         /* Se place au dessus de la sphere */
 
         display: flex;
@@ -104,7 +104,7 @@ h4 {
     }
 
         #Icon-Container a {
-            /* position: relative; */
+            position: relative;                             /* Pour le pos absolute du tooltip */
 
             height: var(--Icon-Size);
         }
