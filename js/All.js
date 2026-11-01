@@ -1,7 +1,3 @@
-const rootStyles = getComputedStyle(document.documentElement);
-const MainColor = rootStyles.getPropertyValue('--main-color');
-const SelectedSecondColor = rootStyles.getPropertyValue('--selected-second-color');
-
 function HeaderSelected() 
 {
     let HeaderLinkTag = document.getElementsByClassName("Header-Link");
@@ -18,7 +14,7 @@ function HeaderSelected()
 }
 HeaderSelected();
 
-// Meme si l'utilisateur enleve sa souris / seleciton du clavier pendant l'animation, celle ci continue jusqu'a la fin
+// Meme si l'utilisateur enleve sa souris / selection du clavier pendant l'animation, celle ci continue jusqu'a la fin
 function HeaderHover() 
 {
     const LINKS = document.getElementsByClassName("Header-Link");

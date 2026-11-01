@@ -89,25 +89,24 @@ function InitSphere() {
 
     // =================================== [ PARAM ] ===================================
 
-    const NUM_POINTS = 220;     // Nombres de points présents sur la sphere
-    const RADIUS = 1.7;         // Taille de la sphere
-    const JITTER_AMOUNT = 0.4;  // Dispersion des points celon leurs positions d"origine (0 = position d"origine)
-    const DOT_SIZE = 0.08;      // Taille des points
-    const POINTS = [];
+    const NUM_POINTS            = 220;          // Nombres de points présents sur la sphere
+    const RADIUS                = 1.7;          // Taille de la sphere
+    const JITTER_AMOUNT         = 0.4;          // Dispersion des points celon leurs positions d"origine (0 = position d"origine)
+    const DOT_SIZE              = 0.08;         // Taille des points
+    const MAX_LINK_DIST         = 0.75;
+    const MAX_LINKS_PER_POINT   = 4;
 
-    const MAX_LINK_DIST = 0.75;
-    const MAX_LINKS_PER_POINT = 4;
-    const LINEPOSITIONS = [];
+    const POINTS                = [];
+    const LINEPOSITIONS         = [];
 
     // =================================== [ VARIABLES ] ===================================
-
-    const SCENE = new THREE.Scene();    // Creation de la scene 3D
-    const CAMERA = new THREE.PerspectiveCamera(45,SPHERECONTAINER.clientWidth / SPHERECONTAINER.clientHeight,0.1,1000); // Creation de la vue
     
-    // Camera.position.z = 5;
+    const COLOR     = getComputedStyle(document.documentElement).getPropertyValue('--second-color');
+    const SCENE     = new THREE.Scene();    // Creation de la scene 3D
+    const CAMERA    = new THREE.PerspectiveCamera(45,SPHERECONTAINER.clientWidth / SPHERECONTAINER.clientHeight,0.1,1000); // Creation de la vue
+    const RENDERER  = new THREE.WebGLRenderer({antialias:true,alpha:true});
 
-    const RENDERER = new THREE.WebGLRenderer({antialias:true,alpha:true});
-
+    
     RENDERER.setPixelRatio(Math.min(window.devicePixelRatio,2));   // Plafonné à 2 : inutile et couteux au dela sur les écrans HiDPI
 
     SPHERECONTAINER.appendChild(RENDERER.domElement);
@@ -121,7 +120,7 @@ function InitSphere() {
 
     const DOTMATERIAL = new THREE.PointsMaterial(
     {
-        color: 0xffffff,
+        color: COLOR,
         size: DOT_SIZE,
         map: makeGlowTexture(),
         sizeAttenuation: true,
@@ -157,7 +156,7 @@ function InitSphere() {
     const LINEGEOMETRY = new THREE.BufferGeometry();
     LINEGEOMETRY.setAttribute("position",new THREE.Float32BufferAttribute(LINEPOSITIONS,3));
 
-    const LINEMATERIAL = new THREE.LineBasicMaterial({color: 0xffffff,transparent: true,opacity: 0.55});
+    const LINEMATERIAL = new THREE.LineBasicMaterial({color: COLOR,transparent: true,opacity: 0.55});
     GLOBE.add(new THREE.LineSegments(LINEGEOMETRY,LINEMATERIAL));
 
     updateView();

@@ -7,8 +7,8 @@ function MailClipboard()
     const VISIBLE_TIME = 2000;                                          // Durée d'affichage de la confirmation (ms)
     const FADE_TIME = 300;                                              // A garder >= à la transition CSS de .Tooltip
 
-    let hideTimer;
-    let clearTimer;
+    let HideTimer;
+    let ClearTimer;
 
     async function CopyMail(Event)
     {
@@ -22,16 +22,16 @@ function MailClipboard()
             return;
         }
 
-        clearTimeout(hideTimer);
-        clearTimeout(clearTimer);
+        clearTimeout(HideTimer);
+        clearTimeout(ClearTimer);
 
         TOOLTIP.textContent = 'Adresse copiée';
         LINK.classList.add('is-copied');
 
-        hideTimer = setTimeout(() => 
+        HideTimer = setTimeout(() => 
         {
             LINK.classList.remove('is-copied');
-            clearTimer = setTimeout(() => { TOOLTIP.textContent = ''; }, FADE_TIME);   // Vidé pour que le lecteur d'écran ré-annonce au prochain clic
+            ClearTimer = setTimeout(() => { TOOLTIP.textContent = ''; }, FADE_TIME);   // Vidé pour que le lecteur d'écran ré-annonce au prochain clic
         }, VISIBLE_TIME);
     }
 

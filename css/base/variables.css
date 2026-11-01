@@ -36,12 +36,7 @@
 
     --Mono-font-family : ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
-    
-    --Footer-Height : clamp(3rem, 5vw, 12rem);
     --Body-Margin : 8rem;
-
-    --Btn_0-Size: 1;
-    --Header_Menu-Size : 1;
 }
 @media (min-width:801px)
 {

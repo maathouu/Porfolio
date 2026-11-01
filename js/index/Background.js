@@ -1,5 +1,3 @@
-// Fond de la page d'accueil : grille de points éclairée autour du curseur + infos techniques (HUD)
-
 function BackgroundGrid() {
     const GRID = document.getElementById('Background-Grid');
     if (!GRID) return;

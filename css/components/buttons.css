@@ -1,10 +1,10 @@
 /* ========================================[ Common ]======================================== */
 
 .Btn-Common {
-    line-height: clamp(calc(var(--Btn_0-Size)*2rem), calc(var(--Btn_0-Size)*3.33vw), calc(var(--Btn_0-Size)*8rem));
-    height: clamp(calc(var(--Btn_0-Size)*2rem), calc(var(--Btn_0-Size)*3.33vw), calc(var(--Btn_0-Size)*8rem));
+    line-height: clamp(calc(var(--Btn-Scale)*2rem), calc(var(--Btn-Scale)*3.33vw), calc(var(--Btn-Scale)*8rem));
+    height: clamp(calc(var(--Btn-Scale)*2rem), calc(var(--Btn-Scale)*3.33vw), calc(var(--Btn-Scale)*8rem));
     text-align: center;
-    width: clamp(calc(var(--Btn_0-Size)*9rem), calc(var(--Btn_0-Size)*15vw), calc(var(--Btn_0-Size)*36rem));
+    width: clamp(calc(var(--Btn-Scale)*9rem), calc(var(--Btn-Scale)*15vw), calc(var(--Btn-Scale)*36rem));
     cursor: pointer;
 }
 
@@ -14,7 +14,7 @@
     position: relative;
     
     transition: all 0.3s;
-    font-size: clamp(calc(var(--Btn_0-Size)*0.65rem), calc(var(--Btn_0-Size)*1.08vw), calc(var(--Btn_0-Size)*2.6rem));
+    font-size: clamp(calc(var(--Btn-Scale)*0.65rem), calc(var(--Btn-Scale)*1.08vw), calc(var(--Btn-Scale)*2.6rem));
     font-family: var(--Medium-font-family);
 }
 
